@@ -32,16 +32,10 @@ class App extends React.Component {
                                     <h3 className="text-primary mb-4">Posts</h3>
                                     <PostSearch />
                                     <div className="mt-4">
-                                        <TodoList />
                                         <div>
                                             <PostList />
                                         </div>
                                     </div>
-                                </div>
-                            </Route>
-                            <Route exact path="/">
-                                <div className="col-12 mt-5">
-                                    app
                                 </div>
                             </Route>
                         </Switch>

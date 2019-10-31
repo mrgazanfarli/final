@@ -17,18 +17,6 @@ export const addTodoReducer = (state = [], action) => {
     }
 }
 
-// export const todoStatusReducer = (state, action) => {
-//     switch (action.type) {
-//         case types.setTodoStatus:
-//             return state.todos.map(todo => {
-//                 if (todo.id === action.payload.id) {
-//                     todo.completed = action.payload.status;
-//                 }
-//                 return todo;
-//             })
-//     }
-// }
-
 export const todoInputValueReducer = (state = '', action) => {
     switch (action.type) {
         case types.setTodoInputValue:

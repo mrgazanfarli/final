@@ -12,7 +12,7 @@ class PostCreator extends React.Component {
         event.preventDefault();
         if (this.props.todoInputValue.trim() !== '') {
             this.props.addTodo({
-                id: Math.max(this.props.todos.map(todo => todo.id)) + 1,
+                id: this.props.todos.length === 0 ? 1 : Math.max(...this.props.todos.map(todo => todo.id)) + 1,
                 title: this.props.todoInputValue,
                 completed: false
             });

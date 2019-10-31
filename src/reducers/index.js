@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 
-import { addTodoReducer, todoInputValueReducer, todoStatusReducer } from './todos';
+import { addTodoReducer, todoInputValueReducer } from './todos';
 import { postInputValueReducer, postsReducer, postsStatusReducer } from './posts';
 
 export default combineReducers({

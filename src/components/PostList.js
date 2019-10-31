@@ -15,14 +15,14 @@ class PostList extends React.Component {
             )
         } else if (this.props.postsStatus === 'SUCCEEDED') {
             return (
-                this.props.posts.map((post, index) => {
+                this.props.posts.length !== 0 ? this.props.posts.map((post, index) => {
                     return (
-                        <div>
+                        <div key={post.id}>
                             <h5 key={post.id}>{index + 1}. {post.title}</h5>
                             <p>{post.body}</p>
                         </div>
                     )
-                })
+                }) : <h4 className="text-danger text-center">No posts found!</h4>
             )
         } else {
             return (

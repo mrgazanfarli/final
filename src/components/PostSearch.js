@@ -1,7 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
 
-import { setPostInputValue, searchPosts } from '../actions';
+import { setPostInputValue, getPosts } from '../actions';
+import { status } from '../constants';
 
 class PostSearch extends React.Component {
     handlePostInputChange = value => {
@@ -10,10 +11,11 @@ class PostSearch extends React.Component {
 
     handlePostFormSubmit = async event => {
         event.preventDefault();
-        await this.props.searchPosts(this.props.postInputValue);
+        await this.props.getPosts(this.props.postInputValue);
     }
 
     render() {
+        const isLoading = this.props.postsStatus === status.loading ? true : false;
         return (
             <form onSubmit={e => this.handlePostFormSubmit(e)}>
                 <div className="d-flex">
@@ -22,8 +24,12 @@ class PostSearch extends React.Component {
                         type="text"
                         onChange={e => this.handlePostInputChange(e.target.value)}
                         value={this.props.todoInputValue}
-                        placeholder="Enter post title..." />
-                    <button type="submit" className="btn btn-success ml-3 px-5">Search</button>
+                        placeholder="Enter post title..."
+                        disabled={isLoading} />
+                    <button 
+                    type="submit" 
+                    className="btn btn-success ml-3 px-5"
+                    disabled={isLoading}>Search</button>
                 </div>
             </form>
         )
@@ -33,8 +39,9 @@ class PostSearch extends React.Component {
 const mapStateToProps = state => {
     return {
         postInputValue: state.postInputValue,
-        posts: state.posts
+        posts: state.posts,
+        postsStatus: state.postsStatus
     }
 }
 
-export default connect(mapStateToProps, { setPostInputValue, searchPosts })(PostSearch)
+export default connect(mapStateToProps, { setPostInputValue, getPosts })(PostSearch)

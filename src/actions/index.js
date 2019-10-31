@@ -38,9 +38,10 @@ export const setPostsStatus = s => {
     }
 }
 
-export const getPosts = () => async dispatch => {
+export const getPosts = query => async dispatch => {
+    dispatch(setPostsStatus(status.loading));
     try {
-        const response = await jsonPlaceholder.get('/posts');
+        const response = await jsonPlaceholder.get(`/posts${query ? `?q=${query}` : ''}`);
         dispatch({
             type: types.setPosts,
             payload: response.data
@@ -50,17 +51,3 @@ export const getPosts = () => async dispatch => {
         dispatch(setPostsStatus(status.failed));
     }
 }
-
-export const searchPosts = query => async dispatch => {
-    dispatch(setPostsStatus(status.loading));
-    try {
-        const response = await jsonPlaceholder.get(`/posts?q=${query}`);
-        dispatch({
-            type: types.setPosts,
-            payload: response.data
-        })
-        dispatch(setPostsStatus(status.succeeded));
-    } catch{
-        dispatch(setPostsStatus(status.failed));
-    }
-}   

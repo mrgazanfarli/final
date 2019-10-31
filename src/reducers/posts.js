@@ -26,12 +26,3 @@ export const postsStatusReducer = (state = status.loading, action) => {
             return state;
     };
 }
-
-export const postSearchStatusReducer = (state = '', action) => {
-    switch (action.type) {
-        case types.setSearchStatus:
-            return action.payload;
-        default:
-            return state;
-    }
-}
